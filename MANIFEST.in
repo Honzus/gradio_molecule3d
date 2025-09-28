@@ -1,0 +1,26 @@
+# Include essential package files
+include README.md
+include LICENSE
+include pyproject.toml
+
+# Include frontend build artifacts
+recursive-include backend/gradio_molecule3d/templates *
+
+# Include frontend source (for development)
+recursive-include frontend *.svelte *.ts *.js *.json *.css
+exclude frontend/node_modules
+exclude frontend/.svelte-kit
+
+# Include package metadata
+include backend/gradio_molecule3d/*.pyi
+
+# Exclude development and build files
+exclude .gitignore
+exclude package.json
+exclude *.pdb *.cif *.sdf *.mol2 *.xyz
+exclude *_demo.py *_test.py simple_*.py test_*.py
+recursive-exclude . __pycache__
+recursive-exclude . *.py[co]
+recursive-exclude . .git*
+recursive-exclude . node_modules
+recursive-exclude . .DS_Store

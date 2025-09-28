@@ -1,0 +1,5 @@
+# This file is kept for compatibility with pip editable installs
+# All configuration is in pyproject.toml
+from setuptools import setup
+
+setup()
