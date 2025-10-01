@@ -24,7 +24,7 @@ with gr.Blocks(
 <a href="https://pypi.org/project/gradio_molecule3d/" target="_blank"><img alt="PyPI - Version" src="https://img.shields.io/pypi/v/gradio_molecule3d"></a>  
 </div>
 
-Python library for easily interacting with trained machine learning models
+Gradio custom component for 3D molecular structure visualization with automatic prediction
 """, elem_classes=["md-custom"], header_links=True)
     app.render()
     gr.Markdown(

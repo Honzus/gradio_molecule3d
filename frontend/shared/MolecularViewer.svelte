@@ -86,14 +86,27 @@
     };
   }
   let colorAlpha = function (atom) {
-    if (atom.b < 50) {
-      return "OrangeRed";
-    } else if (atom.b < 70) {
-      return "Gold";
-    } else if (atom.b < 90) {
-      return "MediumTurquoise";
+
+    if (atom.b < 0.1) {
+      return "#FF0000"; // 0-10 (Red)
+    } else if (atom.b < 0.2) {
+      return "#FF4500"; // 10-20 (OrangeRed)
+    } else if (atom.b < 0.3) {
+      return "#FFA500"; // 20-30 (Orange)
+    } else if (atom.b < 0.4) {
+      return "#FFD700"; // 30-40 (Gold)
+    } else if (atom.b < 0.5) {
+      return "#FFFF00"; // 40-50 (Yellow)
+    } else if (atom.b < 0.6) {
+      return "#ADFF2F"; // 50-60 (GreenYellow)
+    } else if (atom.b < 0.7) {
+      return "#7CFC00"; // 60-70 (LawnGreen)
+    } else if (atom.b < 0.8) {
+      return "#00CED1"; // 70-80 (DarkTurquoise)
+    } else if (atom.b < 0.9) {
+      return "#1E90FF"; // 80-90 (DodgerBlue)
     } else {
-      return "Blue";
+      return "#0000FF"; // 90-100 (Blue)
     }
   };
 
@@ -481,36 +494,78 @@
         </button> -->
       </div>
 
-      {#if anyColorAlphaFold}
+            {#if anyColorAlphaFold}
         <div class="absolute bottom-0 left-0 z-50 p-2 -mb-2 w-full bg-white">
-          <div class="flex text-sm items-center space-x-2 justify-center">
+          <div class="flex text-xs items-center space-x-1 justify-center flex-wrap">
             <div class="flex space-x-1 py-1 items-center">
-              <span class="w-4 h-4" style="background-color: rgb(0, 83, 214);"
+              <span class="w-3 h-3" style="background-color: #0000FF;"
                 >&nbsp;</span
               ><span class="legendlabel"
-                >Very high ({confidenceLabel} &gt; 90)</span
+                >90-100</span
               >
             </div>
             <div class="flex space-x-1 py-1 items-center">
               <span
-                class="w-4 h-4"
-                style="background-color: rgb(101, 203, 243);">&nbsp;</span
+                class="w-3 h-3"
+                style="background-color: #1E90FF;">&nbsp;</span
               ><span class="legendlabel"
-                >Confident (90 &gt; {confidenceLabel} &gt; 70)</span
+                >80-90</span
               >
             </div>
             <div class="flex space-x-1 py-1 items-center">
-              <span class="w-4 h-4" style="background-color: rgb(255, 219, 19);"
+              <span class="w-3 h-3" style="background-color: #00CED1;"
                 >&nbsp;</span
               ><span class="legendlabel"
-                >Low (70 &gt; {confidenceLabel} &gt; 50)</span
+                >70-80</span
               >
             </div>
             <div class="flex space-x-1 py-1 items-center">
-              <span class="w-4 h-4" style="background-color: rgb(255, 125, 69);"
+              <span class="w-3 h-3" style="background-color: #7CFC00;"
                 >&nbsp;</span
               ><span class="legendlabel"
-                >Very low ({confidenceLabel} &lt; 50)</span
+                >60-70</span
+              >
+            </div>
+            <div class="flex space-x-1 py-1 items-center">
+              <span class="w-3 h-3" style="background-color: #ADFF2F;"
+                >&nbsp;</span
+              ><span class="legendlabel"
+                >50-60</span
+              >
+            </div>
+            <div class="flex space-x-1 py-1 items-center">
+              <span class="w-3 h-3" style="background-color: #FFFF00;"
+                >&nbsp;</span
+              ><span class="legendlabel"
+                >40-50</span
+              >
+            </div>
+            <div class="flex space-x-1 py-1 items-center">
+              <span class="w-3 h-3" style="background-color: #FFD700;"
+                >&nbsp;</span
+              ><span class="legendlabel"
+                >30-40</span
+              >
+            </div>
+            <div class="flex space-x-1 py-1 items-center">
+              <span class="w-3 h-3" style="background-color: #FFA500;"
+                >&nbsp;</span
+              ><span class="legendlabel"
+                >20-30</span
+              >
+            </div>
+            <div class="flex space-x-1 py-1 items-center">
+              <span class="w-3 h-3" style="background-color: #FF4500;"
+                >&nbsp;</span
+              ><span class="legendlabel"
+                >10-20</span
+              >
+            </div>
+            <div class="flex space-x-1 py-1 items-center">
+              <span class="w-3 h-3" style="background-color: #FF0000;"
+                >&nbsp;</span
+              ><span class="legendlabel"
+                >0-10</span
               >
             </div>
           </div>

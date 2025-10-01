@@ -1,103 +1,91 @@
-# Gradio Molecule3D
 
-<a href="https://pypi.org/project/gradio_molecule3d/" target="_blank"><img alt="PyPI - Version" src="https://img.shields.io/pypi/v/gradio_molecule3d"></a>
-<img alt="Python" src="https://img.shields.io/badge/python-3.8+-blue.svg">
-<img alt="License" src="https://img.shields.io/badge/license-Apache%202.0-green.svg">
+# `gradio_molecule3d`
+<a href="https://pypi.org/project/gradio_molecule3d/" target="_blank"><img alt="PyPI - Version" src="https://img.shields.io/pypi/v/gradio_molecule3d"></a>  
 
-**A Gradio custom component for 3D molecular structure visualization with automatic prediction**
-
-This component provides instant 3D visualization of molecular structures with **no "Predict" button required** - just upload your molecular file and see immediate 3D rendering using Jmol colors and optimized representations.
-
-## ✨ Features
-
-- 🚀 **Automatic Visualization** - No predict button needed, structures appear instantly on file upload
-- 🎨 **Jmol Color Scheme** - Standard molecular colors with customizable scales
-- 🔬 **Multiple Formats** - Supports PDB, CIF, SDF, MOL2, XYZ, and more
-- ⚡ **Optimized Rendering** - Dual sphere + stick representation for clear visualization
-- 🧪 **Crystal Support** - Automatic expansion of crystal structures for better viewing
+Gradio custom component for 3D molecular structure visualization with automatic prediction
 
 ## Installation
 
-### From GitHub (Recommended)
-
 ```bash
-pip install git+https://github.com/YOUR_USERNAME/gradio-molecule3d.git
+pip install gradio_molecule3d
 ```
 
-### Local Development
-
-```bash
-git clone https://github.com/YOUR_USERNAME/gradio-molecule3d.git
-cd gradio-molecule3d
-pip install -e .
-```
-
-## Quick Start
-
-### Automatic Visualization (No Predict Button)
+## Usage
 
 ```python
+
 import gradio as gr
 from gradio_molecule3d import Molecule3D
 
-# Create demo with automatic visualization
+
+example = Molecule3D().example_value()
+
+
+reps =    [
+    {
+      "model": 0,
+      "chain": "",
+      "resname": "",
+      "style": "cartoon",
+      "color": "hydrophobicity",
+      # "residue_range": "",
+      "around": 0,
+      "byres": False,
+      # "visible": False,
+      # "opacity": 0.5
+    }
+  ]
+
+
+
+def predict(x):
+    print("predict function", x)
+    print(x.name)
+    return x
+
+# def update_color(mol, color):
+#     reps[0]['color'] = color
+#     print(reps)
+#     return Molecule3D(mol, reps=reps)
+
 with gr.Blocks() as demo:
-    gr.Markdown("# 🧬 Molecular Structure Viewer")
-    
-    with gr.Row():
-        with gr.Column():
-            # File upload
-            file_input = gr.File(
-                label="Upload Molecular Structure",
-                file_types=[".pdb", ".cif", ".sdf", ".mol2", ".xyz"]
-            )
-        
-        with gr.Column():
-            # 3D viewer with Jmol colors (default)
-            molecule_viewer = Molecule3D(label="3D Structure")
-    
-    # 🎯 Auto-predict: Upload triggers immediate visualization
-    file_input.upload(
-        fn=lambda x: x,
-        inputs=file_input,
-        outputs=molecule_viewer
-    )
+    gr.Markdown("# Molecule3D")
+    # color_choices = ['redCarbon', 'greenCarbon', 'orangeCarbon', 'blackCarbon', 'blueCarbon', 'grayCarbon', 'cyanCarbon']
+
+    inp = Molecule3D(label="Molecule3D", reps=reps)
+    # cdr_color = gr.Dropdown(choices=color_choices, label="CDR color", value='redCarbon')
+    out = Molecule3D(label="Output", reps=reps)
+    # cdr_color.change(update_color, inputs=[inp,cdr_color], outputs=out)
+    btn = gr.Button("Predict")
+    gr.Markdown(""" 
+    You can configure the default rendering of the molecule by adding a list of representations
+    <pre>
+        reps =    [
+        {
+          "model": 0,
+          "style": "cartoon",
+          "color": "whiteCarbon",
+          "residue_range": "",
+          "around": 0,
+          "opacity":1
+          
+        },
+        {
+          "model": 0,
+          "chain": "A",
+          "resname": "HIS",
+          "style": "stick",
+          "color": "red"
+        }
+      ]
+    </pre>
+    """)
+    btn.click(predict, inputs=inp, outputs=out)
+
 
 if __name__ == "__main__":
     demo.launch()
-```
 
-### Custom Representations
-
-```python
-import gradio as gr
-from gradio_molecule3d import Molecule3D
-
-# Custom representation configuration
-custom_reps = [
-    {
-        "model": 0,
-        "style": "cartoon",
-        "color": "hydrophobicity",
-        "around": 0,
-        "byres": False,
-    },
-    {
-        "model": 0,
-        "chain": "A",
-        "resname": "HIS",
-        "style": "stick",
-        "color": "red"
-    }
-]
-
-with gr.Blocks() as demo:
-    molecule_viewer = Molecule3D(
-        label="Custom Styled Molecule",
-        reps=custom_reps
-    )
-    
-demo.launch()
 ```
 
 ## `Molecule3D`
