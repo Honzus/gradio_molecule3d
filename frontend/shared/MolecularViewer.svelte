@@ -88,25 +88,25 @@
   let colorAlpha = function (atom) {
 
     if (atom.b < 0.1) {
-      return "#FF0000"; // 0-10 (Red)
+      return "#0000FF"; // 0-10 (Blue)
     } else if (atom.b < 0.2) {
-      return "#FF4500"; // 10-20 (OrangeRed)
+      return "#1E90FF"; // 10-20 (DodgerBlue)
     } else if (atom.b < 0.3) {
-      return "#FFA500"; // 20-30 (Orange)
+      return "#00CED1"; // 20-30 (DarkTurquoise)
     } else if (atom.b < 0.4) {
-      return "#FFD700"; // 30-40 (Gold)
+      return "#7CFC00"; // 30-40 (LawnGreen)
     } else if (atom.b < 0.5) {
-      return "#FFFF00"; // 40-50 (Yellow)
+      return "#ADFF2F"; // 40-50 (GreenYellow)
     } else if (atom.b < 0.6) {
-      return "#ADFF2F"; // 50-60 (GreenYellow)
+      return "#FFFF00"; // 50-60 (Yellow)
     } else if (atom.b < 0.7) {
-      return "#7CFC00"; // 60-70 (LawnGreen)
+      return "#FFD700"; // 60-70 (Gold)
     } else if (atom.b < 0.8) {
-      return "#00CED1"; // 70-80 (DarkTurquoise)
+      return "#FFA500"; // 70-80 (Orange)
     } else if (atom.b < 0.9) {
-      return "#1E90FF"; // 80-90 (DodgerBlue)
+      return "#FF4500"; // 80-90 (OrangeRed)
     } else {
-      return "#0000FF"; // 90-100 (Blue)
+      return "#FF0000"; // 90-100 (Red)
     }
   };
 
@@ -498,74 +498,74 @@
         <div class="absolute bottom-0 left-0 z-50 p-2 -mb-2 w-full bg-white">
           <div class="flex text-xs items-center space-x-1 justify-center flex-wrap">
             <div class="flex space-x-1 py-1 items-center">
-              <span class="w-3 h-3" style="background-color: #0000FF;"
+              <span class="w-3 h-3" style="background-color: #FF0000;"
                 >&nbsp;</span
               ><span class="legendlabel"
-                >90-100</span
+                >0.9-1.0</span
               >
             </div>
             <div class="flex space-x-1 py-1 items-center">
               <span
-                class="w-3 h-3"
-                style="background-color: #1E90FF;">&nbsp;</span
-              ><span class="legendlabel"
-                >80-90</span
-              >
-            </div>
-            <div class="flex space-x-1 py-1 items-center">
-              <span class="w-3 h-3" style="background-color: #00CED1;"
+                class="w-3 h-3" style="background-color: #FF4500;"
                 >&nbsp;</span
               ><span class="legendlabel"
-                >70-80</span
-              >
-            </div>
-            <div class="flex space-x-1 py-1 items-center">
-              <span class="w-3 h-3" style="background-color: #7CFC00;"
-                >&nbsp;</span
-              ><span class="legendlabel"
-                >60-70</span
-              >
-            </div>
-            <div class="flex space-x-1 py-1 items-center">
-              <span class="w-3 h-3" style="background-color: #ADFF2F;"
-                >&nbsp;</span
-              ><span class="legendlabel"
-                >50-60</span
-              >
-            </div>
-            <div class="flex space-x-1 py-1 items-center">
-              <span class="w-3 h-3" style="background-color: #FFFF00;"
-                >&nbsp;</span
-              ><span class="legendlabel"
-                >40-50</span
-              >
-            </div>
-            <div class="flex space-x-1 py-1 items-center">
-              <span class="w-3 h-3" style="background-color: #FFD700;"
-                >&nbsp;</span
-              ><span class="legendlabel"
-                >30-40</span
+                >0.8-0.9</span
               >
             </div>
             <div class="flex space-x-1 py-1 items-center">
               <span class="w-3 h-3" style="background-color: #FFA500;"
                 >&nbsp;</span
               ><span class="legendlabel"
-                >20-30</span
+                >0.7-0.8</span
               >
             </div>
             <div class="flex space-x-1 py-1 items-center">
-              <span class="w-3 h-3" style="background-color: #FF4500;"
+              <span class="w-3 h-3" style="background-color: #FFD700;"
                 >&nbsp;</span
               ><span class="legendlabel"
-                >10-20</span
+                >0.6-0.7</span
               >
             </div>
             <div class="flex space-x-1 py-1 items-center">
-              <span class="w-3 h-3" style="background-color: #FF0000;"
+              <span class="w-3 h-3" style="background-color: #FFFF00;"
                 >&nbsp;</span
               ><span class="legendlabel"
-                >0-10</span
+                >0.5-0.6</span
+              >
+            </div>
+            <div class="flex space-x-1 py-1 items-center">
+              <span class="w-3 h-3" style="background-color: #ADFF2F;"
+                >&nbsp;</span
+              ><span class="legendlabel"
+                >0.4-0.5</span
+              >
+            </div>
+            <div class="flex space-x-1 py-1 items-center">
+              <span class="w-3 h-3" style="background-color: #7CFC00;"
+                >&nbsp;</span
+              ><span class="legendlabel"
+                >0.3-0.4</span
+              >
+            </div>
+            <div class="flex space-x-1 py-1 items-center">
+              <span class="w-3 h-3" style="background-color: #00CED1;"
+                >&nbsp;</span
+              ><span class="legendlabel"
+                >0.2-0.3</span
+              >
+            </div>
+            <div class="flex space-x-1 py-1 items-center">
+              <span class="w-3 h-3" style="background-color: #1E90FF;"
+                >&nbsp;</span
+              ><span class="legendlabel"
+                >0.1-0.2</span
+              >
+            </div>
+            <div class="flex space-x-1 py-1 items-center">
+              <span class="w-3 h-3" style="background-color: #0000FF;"
+                >&nbsp;</span
+              ><span class="legendlabel"
+                >0.0-0.1</span
               >
             </div>
           </div>
