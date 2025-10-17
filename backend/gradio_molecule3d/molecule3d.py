@@ -102,27 +102,43 @@ def find_minimum_repeats(atoms, min_length):
 
 def convert_file_to_pdb(file_path: str | Path, gradio_cache: str | Path) -> str:
     # Read the file using ASE, and convert even if it's pdb to make sure all elements go lower case
-
     try:
         structures = ase.io.read(file_path, ':')
     except Exception as e:
         # Bad upload structure, no need to visualize
         raise gr.Error(f'Error parsing file with ase: {str(e)}')
 
+    # If periodic, expand
     if all(structures[0].pbc):
-        # find the minimum number of repeats in each unit cell direction to meet at least 20 angstroms
         repeats = find_minimum_repeats(structures[0], min_length=15.0)
+    else:
+        repeats = None
 
-    structures = [s.repeat(repeats) if all(s.pbc) else s for s in structures]
+    structures = [s.repeat(repeats) if (repeats is not None and all(s.pbc)) else s for s in structures]
 
-    # Create a temporary PDB file
-    with tempfile.NamedTemporaryFile(
-        delete=False, dir=gradio_cache, suffix=".pdb", mode='w',
-    ) as temp_pdb_file:
-        write_proteindatabank(temp_pdb_file, structures)
-    file_name = temp_pdb_file.name
-    return file_name
-   
+    # Determine a clean output basename we want to display
+    input_basename = Path(file_path).name
+    # Prefer to preserve original .pdb basename if present, otherwise use input stem + .pdb
+    if Path(input_basename).suffix.lower() == ".pdb":
+        desired_basename = input_basename
+    else:
+        desired_basename = Path(input_basename).stem + ".pdb"
+
+    # Ensure cache dir exists and choose a unique filename (avoid collisions)
+    cache_dir = Path(gradio_cache)
+    cache_dir.mkdir(parents=True, exist_ok=True)
+
+    candidate = cache_dir / desired_basename
+    i = 1
+    while candidate.exists():
+        candidate = cache_dir / f"{Path(desired_basename).stem}_{i}{Path(desired_basename).suffix}"
+        i += 1
+
+    # Write the PDB to the deterministic path (not a random NamedTemporaryFile)
+    with open(candidate, "w") as out_f:
+        write_proteindatabank(out_f, structures)
+
+    return str(candidate)
 
 class Molecule3D(Component):
     """
