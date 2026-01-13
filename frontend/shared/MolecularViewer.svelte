@@ -933,13 +933,6 @@
                           <option value={i}>{mol.name} #{i}</option>
                         {/each}
                       </select>
-                      <input
-                        type="text"
-                        id="chain"
-                        class="w-1/2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder="Chain"
-                        bind:value={rep.chain}
-                      />
                     </div>
                     <div class="p-1 flex space-x-1">
                       <input
@@ -995,7 +988,7 @@
                     <div
                       class="flex p-1 items-center text-gray-700 space-x-1 text-sm"
                     >
-                      <div class="">scale</div>
+                      <div class="">Scale</div>
                       <input
                         id="around"
                         type="range"
@@ -1028,140 +1021,6 @@
                       />
                       <input type="text" bind:value={rep.around} class="w-8" />
                       <div>Å</div>
-                    </div>
-
-                    <div
-                      class="flex p-1 items-center text-gray-700 space-x-1 text-sm"
-                    >
-                      <div class="flex space-x-1 w-1/2">
-                        <span>Full residue</span>
-                        <label
-                          class="relative inline-flex items-center mr-5 cursor-pointer text-center"
-                        >
-                          <input
-                            type="checkbox"
-                            value=""
-                            class="sr-only peer"
-                            bind:checked={rep.byres}
-                          />
-                          <div
-                            class="w-11 h-6 bg-gray-200 rounded-full peer dark:bg-gray-700 peer-focus:ring-4 peer-focus:ring-orange-300 dark:peer-focus:ring-orange-800 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-orange-400"
-                          />
-                        </label>
-                      </div>
-                      <div class="flex space-x-1 w-1/2">
-                        <span>Only sidechain</span>
-                        <label
-                          class="relative inline-flex items-center mr-5 cursor-pointer text-center"
-                        >
-                          <input
-                            type="checkbox"
-                            value=""
-                            class="sr-only peer"
-                            bind:checked={rep.sidechain}
-                          />
-                          <div
-                            class="w-11 h-6 bg-gray-200 rounded-full peer dark:bg-gray-700 peer-focus:ring-4 peer-focus:ring-orange-300 dark:peer-focus:ring-orange-800 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-orange-400"
-                          />
-                        </label>
-                      </div>
-                    </div>
-
-                    <div class="flex space-x-2 mt-2">
-                      <button
-                        class={rep.color === "orangeCarbon"
-                          ? "bg-orange-600 rounded-full w-8 h-8 border-4 border-gray-300  cursor-pointer"
-                          : "bg-orange-600 rounded-full w-8 h-8 border-4 border-white cursor-pointer"}
-                        on:click={() => (rep.color = "orangeCarbon")}
-                      />
-                      <button
-                        class={rep.color === "redCarbon"
-                          ? "bg-red-600 rounded-full w-8 h-8 border-4 border-gray-300  cursor-pointer"
-                          : "bg-red-600 rounded-full w-8 h-8 border-4 border-white cursor-pointer"}
-                        on:click={() => (rep.color = "redCarbon")}
-                      />
-                      <button
-                        class={rep.color === "blackCarbon"
-                          ? "bg-black rounded-full w-8 h-8 border-4 border-gray-300  cursor-pointer"
-                          : "bg-black rounded-full w-8 h-8 border-4 border-white cursor-pointer"}
-                        on:click={() => (rep.color = "blackCarbon")}
-                      />
-                      <button
-                        class={rep.color === "blueCarbon"
-                          ? "bg-blue-600 rounded-full w-8 h-8 border-4 border-gray-300  cursor-pointer"
-                          : "bg-blue-600 rounded-full w-8 h-8 border-4 border-white cursor-pointer"}
-                        on:click={() => (rep.color = "blueCarbon")}
-                      />
-                      <button
-                        class={rep.color === "grayCarbon"
-                          ? "bg-gray-600 rounded-full w-8 h-8 border-4 border-gray-300  cursor-pointer"
-                          : "bg-gray-600 rounded-full w-8 h-8 border-4 border-white cursor-pointer"}
-                        on:click={() => (rep.color = "grayCarbon")}
-                      />
-                      <button
-                        class={rep.color === "greenCarbon"
-                          ? "bg-green-600 rounded-full w-8 h-8 border-4 border-gray-300  cursor-pointer"
-                          : "bg-green-600 rounded-full w-8 h-8 border-4 border-white cursor-pointer"}
-                        on:click={() => (rep.color = "greenCarbon")}
-                      />
-                      <button
-                        class={rep.color === "cyanCarbon"
-                          ? "bg-cyan-600 rounded-full w-8 h-8 border-4 border-gray-300  cursor-pointer"
-                          : "bg-cyan-600 rounded-full w-8 h-8 border-4 border-white cursor-pointer"}
-                        on:click={() => (rep.color = "cyanCarbon")}
-                      />
-                    </div>
-                    <div class="flex space-x-2 py-2 text-sm">
-                      <button
-                        class={rep.color === "alphafold"
-                          ? "rounded-lg p-1 border border-gray-400 cursor-pointer bg-gray-200"
-                          : "rounded-lg p-1 border border-gray-200 cursor-pointer bg-white"}
-                        on:click={() => (rep.color = "alphafold")}
-                      >
-                        AlphaFold
-                      </button>
-                      <button
-                        class={rep.color === "hydrophobicity"
-                          ? "rounded-lg p-1 border border-gray-400 cursor-pointer bg-gray-200"
-                          : "rounded-lg p-1 border border-gray-200 cursor-pointer bg-white"}
-                        on:click={() => (rep.color = "hydrophobicity")}
-                      >
-                        Hydrophobicity
-                      </button>
-                      <button
-                        class={rep.color === "default"
-                          ? "rounded-lg p-1 border border-gray-400 cursor-pointer bg-gray-200"
-                          : "rounded-lg p-1 border border-gray-200 cursor-pointer bg-white"}
-                        on:click={() => (rep.color = "default")}
-                      >
-                        PyMol
-                      </button>
-                      <button
-                        class={rep.color === "Jmol"
-                          ? "rounded-lg p-1 border border-gray-400 cursor-pointer bg-gray-200"
-                          : "rounded-lg p-1 border border-gray-200 cursor-pointer bg-white"}
-                        on:click={() => (rep.color = "Jmol")}
-                      >
-                        Jmol
-                      </button>
-                    </div>
-                    <div class="flex space-x-2 py-2 text-sm">
-                      <button
-                        class={rep.color === "chain"
-                          ? "rounded-lg p-1 border border-gray-400 cursor-pointer bg-gray-200"
-                          : "rounded-lg p-1 border border-gray-200 cursor-pointer bg-white"}
-                        on:click={() => (rep.color = "chain")}
-                      >
-                        Chain
-                      </button>
-                      <button
-                        class={rep.color === "spectrum"
-                          ? "rounded-lg p-1 border border-gray-400 cursor-pointer bg-gray-200"
-                          : "rounded-lg p-1 border border-gray-200 cursor-pointer bg-white"}
-                        on:click={() => (rep.color = "spectrum")}
-                      >
-                        Spectrum
-                      </button>
                     </div>
                   </div>
                 {/if}
